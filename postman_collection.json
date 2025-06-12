@@ -1,0 +1,273 @@
+{
+  "info": {
+    "_postman_id": "b2c3d4e5-f6g7-h8i9-j0k1-l2m3n4o5p6q7",
+    "name": "Módulo Sessão",
+    "description": "Coleção de requisições para testar o módulo de sessões",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar Sessões",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/sessoes?page=1&limit=10&paciente_id=&data_inicio=&data_fim=",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "sessoes"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "paciente_id",
+              "value": ""
+            },
+            {
+              "key": "data_inicio",
+              "value": ""
+            },
+            {
+              "key": "data_fim",
+              "value": ""
+            }
+          ]
+        },
+        "description": "Lista todas as sessões com paginação e filtros opcionais"
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Sessão",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"paciente_id\": 1,\n    \"data_sessao\": \"2023-06-15\",\n    \"hora_inicio\": \"14:00\",\n    \"hora_fim\": \"15:00\",\n    \"tipo_sessao\": \"Terapia Individual\",\n    \"resumo\": \"Primeira sessão de avaliação. Paciente relatou sintomas de ansiedade.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/sessoes",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "sessoes"
+          ]
+        },
+        "description": "Cria uma nova sessão para um paciente"
+      },
+      "response": []
+    },
+    {
+      "name": "Obter Sessão por ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/sessoes/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "sessoes",
+            "1"
+          ]
+        },
+        "description": "Obtém os dados de uma sessão específica pelo ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Sessões de um Paciente",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/sessoes/paciente/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "sessoes",
+            "paciente",
+            "1"
+          ]
+        },
+        "description": "Lista todas as sessões de um paciente específico"
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Sessão",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"hora_fim\": \"15:30\",\n    \"resumo\": \"Primeira sessão de avaliação. Paciente relatou sintomas de ansiedade e dificuldade para dormir. Foram discutidas técnicas de relaxamento.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/sessoes/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "sessoes",
+            "1"
+          ]
+        },
+        "description": "Atualiza os dados de uma sessão existente"
+      },
+      "response": []
+    },
+    {
+      "name": "Registrar Evolução",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"evolucao\": \"Paciente demonstrou boa adesão às técnicas de respiração propostas. Relatou melhora no padrão de sono após implementar a rotina de relaxamento noturno. Mantém queixas de ansiedade em situações sociais. Para a próxima sessão, será trabalhada a reestruturação cognitiva focada em crenças disfuncionais sobre avaliação social.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/sessoes/1/evolucao",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "sessoes",
+            "1",
+            "evolucao"
+          ]
+        },
+        "description": "Registra a evolução de uma sessão específica"
+      },
+      "response": []
+    },
+    {
+      "name": "Excluir Sessão",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/sessoes/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "sessoes",
+            "1"
+          ]
+        },
+        "description": "Exclui uma sessão específica"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3002",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "seu_token_jwt_aqui",
+      "type": "string"
+    }
+  ]
+}
